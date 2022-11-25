@@ -1,3 +1,4 @@
+import { CircularProgress } from '@mui/material';
 import { memo } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -9,13 +10,15 @@ import styles from './user-page.module.scss';
 
 function UserPage() {
   const user = useSelector<RootState, any>((state) => state.mainReducer.user);
-  const isStudent = true;
-  console.log(user);
 
   return (
     <div className={styles.content}>
-      <Header isStudent={isStudent} />
-      {isStudent ? <StudentPage /> : <TeacherPage />}
+      {user ? (
+        <>
+          <Header user={user} isStudent={user.jobTitle === 'студент'} />
+          {user.jobTitle === 'студент' ? <StudentPage /> : <TeacherPage />}
+        </>
+      ) : <div className={styles.loader}><CircularProgress /></div>}
     </div>
   );
 }

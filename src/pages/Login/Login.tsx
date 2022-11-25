@@ -20,6 +20,7 @@ function Login() {
       clientId: 'ff630e51-21e2-4078-8ec7-c2de9a9c9bc8',
       useLocalStorageCache: true,
       redirectUri: 'http://localhost:3000/userpage',
+      postLogoutRedirectUri: 'http://localhost:3000/login',
     }));
   }, []);
 

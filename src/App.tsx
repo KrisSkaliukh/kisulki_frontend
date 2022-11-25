@@ -15,12 +15,16 @@ import { getScopes, getUserAgentApp } from './utils/authorization';
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: '/login',
     element: <Login />,
   },
   {
     path: '/userPage',
     element: <UserPage />,
+  },
+  {
+    path: '*',
+    element: <Login />,
   },
 ]);
 
@@ -36,6 +40,7 @@ function App() {
       clientId: 'ff630e51-21e2-4078-8ec7-c2de9a9c9bc8',
       useLocalStorageCache: true,
       redirectUri: 'http://localhost:3000/userpage',
+      postLogoutRedirectUri: 'http://localhost:3000/login',
     }));
   }, []);
 
@@ -64,7 +69,6 @@ function App() {
   };
 
   const finalStep = (authResponseWithAccessToken: AuthResponse) => {
-    console.log('final step');
     getUserData(authResponseWithAccessToken);
   };
 
@@ -87,6 +91,8 @@ function App() {
 
     if (clientToken && msalInstance) {
       getGraphAPITokenAndUser();
+    } else if (!clientToken) {
+      window.location.replace('/login');
     }
   }, [msalInstance]);
   return (

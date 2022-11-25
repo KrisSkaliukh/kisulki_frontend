@@ -1,17 +1,44 @@
 import LogoutIcon from '@mui/icons-material/Logout';
 import Avatar from '@mui/material/Avatar';
-import { memo } from 'react';
+import { UserAgentApplication } from 'msal';
+import { memo, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
+import { requestSetUser } from '../../redux/actions';
+import { getUserAgentApp } from '../../utils/authorization';
 import styles from './header.module.scss';
 
 interface IProps {
   isStudent: boolean;
+  user: any;
 }
 
 function Header(props: IProps) {
-  const { isStudent } = props;
-  const name = 'Иванов Иван Иванович';
+  const [msalInstance, setMsalInstance] = useState<UserAgentApplication | undefined>(undefined);
+
+  const { isStudent, user } = props;
   const group = isStudent ? 'ПИ-131' : '';
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setMsalInstance(getUserAgentApp({
+      clientId: 'ff630e51-21e2-4078-8ec7-c2de9a9c9bc8',
+      useLocalStorageCache: true,
+      redirectUri: 'http://localhost:3000/userpage',
+      postLogoutRedirectUri: 'http://localhost:3000/login',
+    }));
+  }, []);
+
+  const logout = async () => {
+    localStorage.clear();
+    dispatch(requestSetUser(null));
+    console.log(localStorage);
+    if (msalInstance) {
+      msalInstance.logout();
+    }
+  };
+
   return (
     <div className={styles.header}>
       <div className={styles.logo}>
@@ -19,7 +46,7 @@ function Header(props: IProps) {
       </div>
       <div className={styles.userInfo}>
         <div className={styles.name}>
-          {name}
+          {user.displayName}
           <div className={styles.group}>
             {group}
           </div>
@@ -27,7 +54,7 @@ function Header(props: IProps) {
         <div className={styles.avatar}>
           <Avatar />
         </div>
-        <div className={styles.logout}>
+        <div role="none" onClick={logout} className={styles.logout}>
           <LogoutIcon />
         </div>
       </div>
