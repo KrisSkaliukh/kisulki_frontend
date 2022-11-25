@@ -1,12 +1,19 @@
 import CircularProgress from '@mui/material/CircularProgress';
 import { AuthResponse, UserAgentApplication } from 'msal';
 import { memo, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
 
+import { requestSetUser } from '../../redux/actions';
 import { getScopes, getUserAgentApp } from '../../utils/authorization';
 import classes from './login.module.scss';
 
 function Login() {
   const [msalInstance, setMsalInstance] = useState<UserAgentApplication | undefined>(undefined);
+
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setMsalInstance(getUserAgentApp({
@@ -43,9 +50,12 @@ function Login() {
       },
       msalInstance,
     );
+    dispatch(requestSetUser({ ...userData, ...authResponseWithAccessToken }));
+    navigate('/userPage');
   };
 
   const finalStep = (authResponseWithAccessToken: AuthResponse) => {
+    console.log('final step');
     getUserData(authResponseWithAccessToken);
   };
 
@@ -55,6 +65,7 @@ function Login() {
         const silentRes = await msalInstance!.acquireTokenSilent({ scopes });
         finalStep(silentRes);
       } catch (err) {
+        console.log('not silent');
         msalInstance!.acquireTokenRedirect({ scopes });
       }
     } catch (error: any) {
