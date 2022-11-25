@@ -1,0 +1,27 @@
+.header {
+    height: 70px;
+    padding: 0 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    height: 50px;
+    width: 50px;
+}
+
+.userInfo {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.avatar {
+    margin-left: 15px;
+}
+
+.logout {
+    cursor: pointer;
+    margin-left: 50px;
+}
