@@ -64,7 +64,6 @@ function Login() {
 
   useEffect(() => {
     if (msalInstance) {
-      console.log('redirect');
       msalInstance!.handleRedirectCallback(
         (error: any, authResponse: any) => {
           if (!error && authResponse) {
@@ -80,10 +79,8 @@ function Login() {
     const clientToken = localStorage.getItem('msal.idtoken');
 
     if (clientToken && msalInstance) {
-      console.log(123);
       getGraphAPITokenAndUser();
     } else if (msalInstance) {
-      console.log(123);
       redirectLogin();
     }
   }, [msalInstance]);
