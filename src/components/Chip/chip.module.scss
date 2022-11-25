@@ -1,0 +1,14 @@
+.chip {
+  height: 35px;
+  width: max-content;
+  box-sizing: border-box;
+  padding: 8px 16px;
+  border-radius: 115px;
+
+  p {
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+  }
+}

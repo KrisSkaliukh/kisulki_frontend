@@ -1,0 +1,95 @@
+@import '../../variabales';
+
+.container {
+  position: relative;
+  cursor: pointer;
+  border-radius: 30px;
+  box-sizing: border-box;
+  width: 100%;
+  
+  input {
+    padding: 0 40px 0 20px;
+    border-radius: 30px;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 400;
+    width: 100%;
+    background-color: $light-grey;
+    cursor: pointer;
+    outline: 0;
+    box-sizing: border-box;
+  }
+
+  .iconContainer {
+    width: 15px;
+    height: 9px;
+    position: absolute;
+    left: 85%;
+    top: 21px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.7s ease;
+  }
+
+  svg {
+    width: 15px;
+    height: 9px;
+  }
+  
+  .rotatedIcon {
+    transform: rotateZ(180deg);
+  }
+
+  .menu {
+    position: absolute;
+    top: 55px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 18px;
+    box-shadow: 0px 12px 28px rgba(8, 8, 8, 0.12);
+    box-sizing: border-box;
+    transition: all 0.7s ease;
+    width: 100%;
+    z-index: 5;
+    overflow: hidden;
+
+    p {
+      font-weight: 400;
+      font-size: 20px;
+    }
+  }
+
+  .hiddenMenu {
+    max-height: 0;
+    padding: 0 18px;
+    transition: max-height 0.7s ease, padding 0.7s ease;
+  }
+
+  .expandedMenu {
+    max-height: 350px;
+    transition: max-height 0.7s ease, padding 0.7s ease;
+    border: 1px solid #CFCFCF;
+  }
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  p {
+    margin-bottom: 0;
+    line-height: 30px;
+  }
+}
+
+.option:not(:first-of-type) {
+  margin-top: 10px;
+}
+
+.clearOptions {
+  color: orange;
+  margin-bottom: 0;
+  margin-top: 10px;
+}
