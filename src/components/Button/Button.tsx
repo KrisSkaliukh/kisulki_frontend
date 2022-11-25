@@ -1,7 +1,5 @@
 import { memo } from 'react';
 
-import classes from './button.module.scss';
-
 interface IButtonProps {
   title: string;
   onClick: () => void;

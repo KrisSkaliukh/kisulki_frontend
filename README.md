@@ -1,1 +1,1 @@
-# Hackathon-frontend
+# Hacakthon-frontend
