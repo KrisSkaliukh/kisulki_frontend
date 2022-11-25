@@ -5,7 +5,14 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 
-const router = createBrowserRouter([]);
+import Login from './pages/Login';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Login />,
+  },
+]);
 
 function App() {
   return (
