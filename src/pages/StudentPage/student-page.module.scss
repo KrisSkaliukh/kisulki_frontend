@@ -1,8 +1,64 @@
 .content {
-  height: 100vh;
+  height: calc(100% - 70px);
   width: 100%;
   display: flex;
-  justify-content: center;
+  position: relative;
+}
+
+.lectureText {
+  width: 100%;
+  text-align: center;
+  transform: skewX(20deg);
+  font-size: 2rem;
+}
+
+.lectureTextOnline {
+  width: 100%;
+  text-align: center;
+  transform: skewX(20deg);
+  font-size: 2rem;
+  margin-right: 20%;
+}
+
+.lectureOffline {
+  transition: ease-out 0.4s;
+  display: flex;
+  cursor: pointer;
   align-items: center;
-  background-color: goldenrod;
+  background-color: rgb(169, 226, 235);
+  width: 70%;
+  position: absolute;
+  height: 100%;
+  left: -20%;
+  z-index: 10;
+  transform: skewX(-20deg);
+}
+
+.lectureOffline:hover {
+  transition: ease-in 0.4s;
+  background-color: rgb(139, 220, 233);
+  width: 80%;
+  left: -20%;
+  z-index: 2;
+}
+
+.lectureOnline {
+  transition: ease-in 0.4s;
+  display: flex;
+  align-items: center;
+  background-color: rgb(224, 175, 255);
+  cursor: pointer;
+  width: 70%;
+  position: absolute;
+  height: 100%;
+  right: -20%;
+  transform: skewX(-20deg);
+}
+
+.lectureOnline:hover {
+  transition: ease-in 0.4s;
+  background-color: rgb(207, 140, 249);
+  width: 80%;
+  right: -20%;
+  z-index: 10;
 }
