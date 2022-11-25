@@ -4,8 +4,14 @@ import { memo } from 'react';
 
 import styles from './header.module.scss';
 
-function Header() {
+interface IProps {
+  isStudent: boolean;
+}
+
+function Header(props: IProps) {
+  const { isStudent } = props;
   const name = 'Иванов Иван Иванович';
+  const group = isStudent ? 'ПИ-131' : '';
   return (
     <div className={styles.header}>
       <div className={styles.logo}>
@@ -14,6 +20,9 @@ function Header() {
       <div className={styles.userInfo}>
         <div className={styles.name}>
           {name}
+          <div className={styles.group}>
+            {group}
+          </div>
         </div>
         <div className={styles.avatar}>
           <Avatar />

@@ -10,7 +10,7 @@ function UserPage() {
 
   return (
     <div className={styles.content}>
-      <Header />
+      <Header isStudent={isStudent} />
       {isStudent ? <StudentPage /> : <TeacherPage />}
     </div>
   );
