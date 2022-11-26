@@ -35,7 +35,7 @@ function LectionOverContent({
       <p>{`Количество посетивших: ${checkedStudentsNum}/${studentsNum}`}</p>
       <div className={classes.buttonContainer}>
         <Button title="Загрузить отчет" isPrimary />
-        <Button title="Выгрузить в LMS" isPrimary />
+        <Button title="Синхронизация с LMS" isPrimary />
       </div>
     </div>
   );
