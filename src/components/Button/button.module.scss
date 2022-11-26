@@ -2,15 +2,15 @@
 @import '../../variabales';
 
 .primaryButton {
-  height: 50px;
+  height: 56px;
   width: 200px;
   @include primaryButton;
-  border-radius: 30px;
+  border-radius: 22px;
 }
 
 .secondaryButton {
   @include secondaryButton;
-  height: 50px;
+  height: 56px;
   width: 200px;
-  border-radius: 30px;
+  border-radius: 22px;
 }

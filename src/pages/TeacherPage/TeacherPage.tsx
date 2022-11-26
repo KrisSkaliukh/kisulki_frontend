@@ -49,6 +49,9 @@ const lessons = [
 ];
 
 function TeacherPage() {
+  fetch('https://cors-everywhere.herokuapp.com/http://165.22.28.187/schedule-api/?query=Пескова')
+    .then((response) => response.json())
+    .then((data) => console.log(data.table.table.slice(1)));
   return (
     <div className={styles.content}>
       <h1>Расписание занятий</h1>

@@ -35,7 +35,7 @@
 
 @mixin secondaryButton() {
   background-color: white;
-  border: 0;
+  border: 1px solid $active-button;
   color: $active-button;
 
   &:hover {
