@@ -97,7 +97,6 @@ function Schedule() {
     <div className={styles.content}>
       {isLectionOpen ? <Lection currentLesson={currentLesson} /> : (
         <>
-
           <div className={styles.title}>
             <h1>Расписание занятий</h1>
             {isStudent

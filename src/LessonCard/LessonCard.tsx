@@ -1,3 +1,4 @@
+import { useMediaQuery } from '@mui/material';
 import moment from 'moment';
 import { memo, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -7,6 +8,7 @@ import FutureLectionContent from '../components/FutureLectionContent';
 import LectionOverContent from '../components/LectionOverContent';
 import Modal from '../components/Modal';
 import { RootState } from '../redux/reducers/rootReducer';
+import mediaQueries from '../utils/media-query/media-query';
 import classes from './lesson-card.module.scss';
 
 interface ILessonCardProps {
@@ -29,6 +31,8 @@ function LessonCard({
   teacher,
 }: ILessonCardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const isMobile = useMediaQuery(mediaQueries.mobile);
 
   const user = useSelector<RootState, any>((state) => state.mainReducer.user);
   const isStudent = user.user.role === 'student';
@@ -97,7 +101,7 @@ function LessonCard({
       </div>
       {isModalOpen && !isStudent && (
         <Modal
-          width="480px"
+          width={isMobile ? '90%' : '480px'}
           height={checkRegistrationStatus() === 'Регистрация окончена' ? '400px' : '500px'}
           renderContent={() => (checkRegistrationStatus() === 'Регистрация окончена'
             ? (
