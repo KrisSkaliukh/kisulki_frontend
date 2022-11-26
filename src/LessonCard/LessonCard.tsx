@@ -7,6 +7,7 @@ import Chip from '../components/Chip';
 import FutureLectionContent from '../components/FutureLectionContent';
 import LectionOverContent from '../components/LectionOverContent';
 import Modal from '../components/Modal';
+import StudentLectionRegister from '../components/StudentLectionRegister';
 import { RootState } from '../redux/reducers/rootReducer';
 import mediaQueries from '../utils/media-query/media-query';
 import classes from './lesson-card.module.scss';
@@ -66,14 +67,15 @@ function LessonCard({
     }
     return '#059669';
   };
-
+  console.log(isModalOpen);
+  console.log(isStudent, 123);
   return (
     <>
       <div
         className={classes.card}
         role="none"
         onClick={() => {
-          if (checkRegistrationStatus() === 'Регистрация продолжается') {
+          if (checkRegistrationStatus() === 'Регистрация продолжается' && !isStudent) {
             onActiveLessonClick({
               title,
               registrationTime,
@@ -127,33 +129,20 @@ function LessonCard({
             ))}
         />
       )}
-      {isModalOpen && false && (
-        <Modal
-          width="480px"
-          height={checkRegistrationStatus() === 'Регистрация окончена' ? '300px' : '400px'}
-          renderContent={() => (checkRegistrationStatus() === 'Регистрация окончена'
-            ? ( // курсор блок, убрать ховер и модалку не открывать
-              <LectionOverContent
-                title={title}
-                date={date}
-                studentsNum={25}
-                checkedStudentsNum={20}
-                onClose={() => setIsModalOpen(false)}
-                group={group}
-                audience={audience}
-              />
-            )
-            : ( // рега на пользователя, если нет - красный инпут, если да - "Посещение защитано" на поповере
-              <FutureLectionContent
-                date={date}
-                title={title}
-                onClose={() => setIsModalOpen(false)}
-                registrationTime={registrationTime}
-                group={group}
-                audience={audience}
-              />
-            ))}
-        />
+      {isModalOpen && isStudent && (
+        checkRegistrationStatus() === 'Регистрация продолжается'
+          && (
+            <Modal
+              width="480px"
+              height={checkRegistrationStatus() === 'Регистрация окончена' ? '300px' : '400px'}
+              renderContent={() => (
+                <StudentLectionRegister
+                  title={title}
+                  onClose={() => setIsModalOpen(false)}
+                />
+              )}
+            />
+          )
       )}
     </>
   );

@@ -9,9 +9,9 @@
     align-items: center;
 
     @include respond-to(mobile) {
-        padding: 0 20px;
+        padding: 0 40px;
         background-color: bisque;
-        height: 100px;
+        height: 130px;
     }
 }
 
@@ -20,6 +20,15 @@
     width: 50px;
 
     @include respond-to(mobile) {
+        display: none;
+    }
+}
+
+.logoMobile {
+    display: none;
+
+    @include respond-to(mobile) {
+        display: block;
         height: 70px;
         width: 70px;
     }
@@ -34,16 +43,41 @@
 .name {
     font-size: 18px;
     text-align: end;
+
+    @include respond-to(mobile) {
+        display: none;
+    }
+}
+
+.nameMobile {
+    display: none;
+
+    @include respond-to(mobile) {
+        display: inline;
+        font-size: 22px;
+        text-align: end;
+    }
 }
 
 .group {
     font-size: 12px;
     font-weight: 700;
     color: grey;
+    
+    @include respond-to(mobile) {
+        font-size: 12px;
+        font-weight: 700;
+        color: grey;
+    }
 }
 
 .avatar {
     margin-left: 15px;
+    
+    @include respond-to(mobile) {
+       width: 50px;
+       height: 50px;
+    }
 }
 
 .logout {
@@ -51,15 +85,6 @@
     margin-left: 50px;
 
     @include respond-to(mobile) {
-        display: none;
-    }
-}
-
-.logoutMobile {
-    display: none;
-
-    @include respond-to(mobile) {
-        display: block;
-        margin-left: 15px;
+        margin-left: 20px;
     }
 }

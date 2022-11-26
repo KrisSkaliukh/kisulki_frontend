@@ -5,7 +5,7 @@ import classes from './modal.module.scss';
 interface ILessonCardProps {
   width: string;
   height: string;
-  renderContent: () => JSX.Element ;
+  renderContent: any;
 }
 
 function Modal({

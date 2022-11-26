@@ -1,0 +1,42 @@
+.content {
+  box-sizing: border-box;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    color: #1f1f26;
+    font-weight: 700;
+    font-size: 20px;
+  }
+
+  .header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+    svg {
+      cursor: pointer;
+    }
+  }
+
+  p {
+    color: #1f1f26;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 20px;
+  }
+
+  .buttonContainer {
+    display: flex;
+    margin-top: 50px;
+    width: 100%;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .lectionCode {
+    justify-content: center;
+    margin: 50px 15px 0 15px;
+  }
+}

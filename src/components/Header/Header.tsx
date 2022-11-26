@@ -1,5 +1,4 @@
 import LogoutIcon from '@mui/icons-material/Logout';
-import MenuIcon from '@mui/icons-material/Menu';
 import Avatar from '@mui/material/Avatar';
 import { UserAgentApplication } from 'msal';
 import { memo, useEffect, useState } from 'react';
@@ -38,14 +37,28 @@ function Header(props: IProps) {
     }
   };
 
+  const lastName = user.displayName.split(' ')[0];
+  const firstLetterName = user.displayName.split(' ')[1].slice(0, 1);
+  const firstLetterPatronymic = user.displayName.split(' ')[2].slice(0, 1);
+  const initials = `${lastName} ${firstLetterName}.${firstLetterPatronymic}.`;
+
   return (
     <div className={styles.header}>
       <div className={styles.logo}>
         <img src="logo_sfedu.png" alt="logo" height="50px" width="50px" />
       </div>
+      <div className={styles.logoMobile}>
+        <img src="logo_sfedu.png" alt="logo" height="90px" width="90px" />
+      </div>
       <div className={styles.userInfo}>
         <div className={styles.name}>
           {user.displayName}
+          <div className={styles.group}>
+            {group}
+          </div>
+        </div>
+        <div className={styles.nameMobile}>
+          {initials}
           <div className={styles.group}>
             {group}
           </div>
@@ -55,9 +68,6 @@ function Header(props: IProps) {
         </div>
         <div role="none" onClick={logout} className={styles.logout}>
           <LogoutIcon />
-        </div>
-        <div role="none" onClick={logout} className={styles.logoutMobile}>
-          <MenuIcon />
         </div>
       </div>
     </div>
