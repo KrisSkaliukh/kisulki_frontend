@@ -8,6 +8,7 @@ async function archiveRequest(user: any) {
       firstName: user.firstName,
       lastName: user.lastName,
       jobTitle: user.jobTitle,
+      displayName: user.displayName,
     },
     {
       headers: {
