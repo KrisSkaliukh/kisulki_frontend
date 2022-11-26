@@ -1,0 +1,48 @@
+.switchWrapper {
+  display: flex;
+  align-items: center;
+  
+  .switchLable {
+    width: 55px;
+  }
+
+  .switch {
+    display: flex;
+    width: 60px;
+    height: 30px;
+    background-color: #21BA72;
+    border-radius: 40px;
+    border-color: grey;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 5%;
+    
+    .leftOption {
+      margin-left: 4px;
+    }
+    
+    .rightOption {
+      margin-right: 4px;
+    }
+    
+    .leftOption, .rightOption {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    
+      p {
+        font-weight: 400;
+        font-size: 24px;
+        margin: 0;
+      }
+    }
+
+    .activeOption {
+      background-color: #fff;
+    }
+  }
+}

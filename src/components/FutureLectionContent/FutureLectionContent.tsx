@@ -12,6 +12,7 @@ import classes from './future-lection-content.module.scss';
 interface IFutureLectionContentProps {
   title: string;
   group: string;
+  audience: string,
   date: Date;
   onClose: () => void;
   registrationTime: number;
@@ -20,6 +21,7 @@ interface IFutureLectionContentProps {
 function FutureLectionContent({
   title,
   group,
+  audience,
   date,
   onClose,
   registrationTime,
@@ -29,12 +31,13 @@ function FutureLectionContent({
   return (
     <div className={classes.content}>
       <div className={classes.header}>
-        <h2>{`Занятие: ${title}`}</h2>
+        <h2>{`Дисциплина: ${title}`}</h2>
         <div role="none" onClick={onClose}>
           <CloseIcon />
         </div>
       </div>
       <p>{`Группа: ${group}`}</p>
+      <p>{`Аудитория: ${audience}`}</p>
       <div className={classes.datePickerContainer}>
         <LocalizationProvider dateAdapter={AdapterMoment}>
           <DateTimePicker
