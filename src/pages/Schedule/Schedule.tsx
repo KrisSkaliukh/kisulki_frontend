@@ -93,9 +93,13 @@ function Schedule() {
     setCurrentLesson(lesson);
   };
 
+  const onActiveLessonClose = () => {
+    setLectionOpen(false);
+  };
+
   return (
     <div className={styles.content}>
-      {isLectionOpen ? <Lection currentLesson={currentLesson} /> : (
+      {isLectionOpen ? <Lection onClose={onActiveLessonClose} currentLesson={currentLesson} /> : (
         <>
           <div className={styles.title}>
             <h1>Расписание занятий</h1>
