@@ -1,6 +1,7 @@
 import { memo, useState } from 'react';
 import { useSelector } from 'react-redux';
 
+import Lection from '../../components/Lection';
 import Switch from '../../components/Switch';
 import LessonCard from '../../LessonCard';
 import { RootState } from '../../redux/reducers/rootReducer';
@@ -84,12 +85,22 @@ function Schedule() {
     return setActiveOption('left');
   };
 
+  const [isLectionOpen, setLectionOpen] = useState(false);
+  const [currentLesson, setCurrentLesson] = useState<any>(null);
+
+  const onActiveLessonClick = (lesson: any) => {
+    setLectionOpen(true);
+    setCurrentLesson(lesson);
+  };
+
   return (
     <div className={styles.content}>
+      {isLectionOpen ? <Lection currentLesson={currentLesson} /> : (
+        <>
 
-      <div className={styles.title}>
-        <h1>Расписание занятий</h1>
-        {isStudent
+          <div className={styles.title}>
+            <h1>Расписание занятий</h1>
+            {isStudent
       && (
       <Switch
         activeOption={activeOption}
@@ -97,22 +108,25 @@ function Schedule() {
       />
 
       )}
-      </div>
-      <div className={styles.cardsContainer}>
-        {lessons
-          .filter((i: any) => (activeOption === 'left' ? !i.isOnline : i.isOnline))
-          .map((item) => (
-            <LessonCard
-              key={item.id}
-              title={item.title}
-              date={item.date}
-              registrationTime={item.registrationTime}
-              group={item.group}
-              audience={item.audience}
-              teacher={item.teacher}
-            />
-          ))}
-      </div>
+          </div>
+          <div className={styles.cardsContainer}>
+            {lessons
+              .filter((i: any) => (activeOption === 'left' ? !i.isOnline : i.isOnline))
+              .map((item) => (
+                <LessonCard
+                  key={item.id}
+                  title={item.title}
+                  date={item.date}
+                  registrationTime={item.registrationTime}
+                  group={item.group}
+                  audience={item.audience}
+                  teacher={item.teacher}
+                  onActiveLessonClick={onActiveLessonClick}
+                />
+              ))}
+          </div>
+        </>
+      )}
     </div>
   );
 }

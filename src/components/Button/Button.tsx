@@ -20,8 +20,8 @@ function Button({
     <button
       onClick={onClick}
       className={cn({
-        [classes.primaryButton]: isPrimary,
-        [classes.secondaryButton]: !isPrimary,
+        [classes.primaryButton]: isPrimary && !disabled,
+        [classes.secondaryButton]: !isPrimary && !disabled,
         [classes.disabledButton]: disabled,
       })}
       type="button"
