@@ -14,3 +14,10 @@
   width: 200px;
   border-radius: 30px;
 }
+
+.disabledButton {
+  @include disabledButton;
+  height: 50px;
+  width: 200px;
+  border-radius: 30px;
+}

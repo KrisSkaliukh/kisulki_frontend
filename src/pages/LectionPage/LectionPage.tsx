@@ -7,9 +7,9 @@ import { requestGetSchedule } from '../../redux/actions';
 import { RootState } from '../../redux/reducers/rootReducer';
 import StudentPage from '../StudentPage';
 import TeacherPage from '../TeacherPage';
-import styles from './user-page.module.scss';
+import styles from './lection-page.module.scss';
 
-function UserPage() {
+function LectionPage() {
   const user = useSelector<RootState, any>((state) => state.mainReducer.user);
 
   const dispatch = useDispatch();
@@ -30,4 +30,4 @@ function UserPage() {
   );
 }
 
-export default memo(UserPage);
+export default memo(LectionPage);

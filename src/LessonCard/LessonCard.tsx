@@ -31,6 +31,27 @@ function LessonCard({
     }
     return 'Регистрация окончена';
   };
+
+  const checkChipColor = (status: string) => {
+    if (status === 'Регистрация не начата') {
+      return '#fff7e9';
+    }
+    if (status === 'Регистрация окончена') {
+      return '#fef2f2';
+    }
+    return '#ecfdf5';
+  };
+
+  const checkTextColor = (status: string) => {
+    if (status === 'Регистрация не начата') {
+      return '#d29430';
+    }
+    if (status === 'Регистрация окончена') {
+      return '#ef4444';
+    }
+    return '#059669';
+  };
+
   return (
     <>
       <div
@@ -46,8 +67,8 @@ function LessonCard({
           <p>{`Дата занятия: ${moment(date).format('DD/MM/YYYY HH:MM')}`}</p>
           <Chip
             title={checkRegistrationStatus()}
-            color={checkRegistrationStatus() === 'Регистрация окончена' ? '#fef2f2' : '#ecfdf5'}
-            textColor={checkRegistrationStatus() === 'Регистрация окончена' ? '#ef4444' : '#059669'}
+            color={checkChipColor(checkRegistrationStatus())}
+            textColor={checkTextColor(checkRegistrationStatus())}
           />
         </div>
       </div>
