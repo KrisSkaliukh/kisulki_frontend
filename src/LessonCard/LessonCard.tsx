@@ -1,18 +1,22 @@
 import moment from 'moment';
 import { memo, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import Chip from '../components/Chip';
 import FutureLectionContent from '../components/FutureLectionContent';
 import LectionOverContent from '../components/LectionOverContent';
 import Modal from '../components/Modal';
+import { RootState } from '../redux/reducers/rootReducer';
 import classes from './lesson-card.module.scss';
 
 interface ILessonCardProps {
   title: string;
   date: Date;
   registrationTime: number;
+  audience: string;
   group: string;
   onActiveLessonClick: (lesson: any) => void;
+  teacher: string;
 }
 
 function LessonCard({
@@ -21,8 +25,13 @@ function LessonCard({
   registrationTime,
   group,
   onActiveLessonClick,
+  audience,
+  teacher,
 }: ILessonCardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const user = useSelector<RootState, any>((state) => state.mainReducer.user);
+  const isStudent = user.user.role === 'student';
 
   const checkRegistrationStatus = () => {
     if (moment(date).isAfter(new Date())) {
@@ -75,7 +84,9 @@ function LessonCard({
           <h2>{title}</h2>
         </div>
         <div className={classes.content}>
-          <p>{`Группа: ${group}`}</p>
+          {isStudent && <p>{`Преподаватель: ${teacher}`}</p>}
+          {!isStudent && <p>{`Группа: ${group}`}</p>}
+          <p>{`Аудитория: ${audience}`}</p>
           <p>{`Дата занятия: ${moment(date).format('DD/MM/YYYY HH:MM')}`}</p>
           <Chip
             title={checkRegistrationStatus()}
@@ -84,28 +95,58 @@ function LessonCard({
           />
         </div>
       </div>
-      {isModalOpen && (
+      {isModalOpen && !isStudent && (
         <Modal
           width="480px"
-          height={checkRegistrationStatus() === 'Регистрация окончена' ? '300px' : '400px'}
+          height={checkRegistrationStatus() === 'Регистрация окончена' ? '400px' : '500px'}
           renderContent={() => (checkRegistrationStatus() === 'Регистрация окончена'
             ? (
               <LectionOverContent
                 title={title}
-                group={group}
                 date={date}
                 studentsNum={25}
                 checkedStudentsNum={20}
                 onClose={() => setIsModalOpen(false)}
+                group={group}
+                audience={audience}
               />
             )
             : (
               <FutureLectionContent
                 date={date}
                 title={title}
-                group={group}
                 onClose={() => setIsModalOpen(false)}
                 registrationTime={registrationTime}
+                group={group}
+                audience={audience}
+              />
+            ))}
+        />
+      )}
+      {isModalOpen && isStudent && (
+        <Modal
+          width="480px"
+          height={checkRegistrationStatus() === 'Регистрация окончена' ? '300px' : '400px'}
+          renderContent={() => (checkRegistrationStatus() === 'Регистрация окончена'
+            ? ( // курсор блок, убрать ховер и модалку не открывать
+              <LectionOverContent
+                title={title}
+                date={date}
+                studentsNum={25}
+                checkedStudentsNum={20}
+                onClose={() => setIsModalOpen(false)}
+                group={group}
+                audience={audience}
+              />
+            )
+            : ( // рега на пользователя, если нет - красный инпут, если да - "Посещение защитано" на поповере
+              <FutureLectionContent
+                date={date}
+                title={title}
+                onClose={() => setIsModalOpen(false)}
+                registrationTime={registrationTime}
+                group={group}
+                audience={audience}
               />
             ))}
         />

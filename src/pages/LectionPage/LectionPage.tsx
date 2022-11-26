@@ -5,12 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import Header from '../../components/Header';
 import { requestGetSchedule } from '../../redux/actions';
 import { RootState } from '../../redux/reducers/rootReducer';
-import Schedule from '../Schedule';
-// import StudentPage from '../StudentPage';
-// import TeacherPage from '../TeacherPage';
-import styles from './user-page.module.scss';
+import UserPage from '../UserPage';
+import styles from './lection-page.module.scss';
 
-function UserPage() {
+function LectionPage() {
   const user = useSelector<RootState, any>((state) => state.mainReducer.user);
 
   const dispatch = useDispatch();
@@ -23,12 +21,12 @@ function UserPage() {
     <div className={styles.content}>
       {user ? (
         <>
-          <Header user={user} isStudent={user.role === 'student'} />
-          <Schedule />
+          <Header user={user} isStudent={false} />
+          <UserPage />
         </>
       ) : <div className={styles.loader}><CircularProgress /></div>}
     </div>
   );
 }
 
-export default memo(UserPage);
+export default memo(LectionPage);

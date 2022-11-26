@@ -5,10 +5,18 @@
   padding: 8px 16px;
   border-radius: 115px;
 
+  &:hover {
+    background-color: #059669;
+  }
+
   p {
     color: white;
     font-weight: 600;
     font-size: 16px;
     line-height: 19px;
+  }
+
+  &:hover {
+    color: #fff;
   }
 }
