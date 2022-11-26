@@ -6,11 +6,12 @@
   overflow-x: hidden;
 }
 
-.lectureText {
+.lectureTextOffline {
   width: 100%;
   text-align: center;
   transform: skewX(20deg);
   font-size: 2rem;
+  margin-left: 15%;
 }
 
 .lectureTextOnline {
@@ -18,11 +19,11 @@
   text-align: center;
   transform: skewX(20deg);
   font-size: 2rem;
-  margin-right: 20%;
+  margin-right: 15%;
 }
 
 .lectureOffline {
-  transition: ease-out 0.4s;
+  transition: ease-in 0.4s;
   display: flex;
   cursor: pointer;
   align-items: center;
@@ -62,4 +63,53 @@
   width: 80%;
   right: -20%;
   z-index: 10;
+}
+
+.expandedOnline {
+  display: flex;
+  position: absolute;
+  height: 100%;
+  right: -20%;
+  z-index: 10;
+  align-items: center;
+  transition: ease-in 1s;
+  background-color: rgb(224, 175, 255);
+  width: 120%;
+}
+
+.hideOnline {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  background-color: rgb(224, 175, 255);
+  transition: ease-out 1s;
+  width: 0;
+}
+
+.expandedOffline {
+  display: flex;
+  position: absolute;
+  height: 100%;
+  left: -20%;
+  z-index: 10;
+  align-items: center;
+  transition: ease-in 1s;
+  background-color: rgb(169, 226, 235);
+  width: 120%;
+}
+
+.hideOffline {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  background-color: rgb(224, 175, 255);
+  transition: ease-in 1s;
+  width: 0;
+}
+
+.hiddenText {
+  transition: ease-in 1s;
+  text-align: center;
+  transform: skewX(20deg);
+  font-size: 0;
 }
