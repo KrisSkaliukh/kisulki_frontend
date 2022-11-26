@@ -5,8 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Header from '../../components/Header';
 import { requestGetSchedule } from '../../redux/actions';
 import { RootState } from '../../redux/reducers/rootReducer';
-import StudentPage from '../StudentPage';
-import TeacherPage from '../TeacherPage';
+import UserPage from '../UserPage';
 import styles from './lection-page.module.scss';
 
 function LectionPage() {
@@ -23,7 +22,7 @@ function LectionPage() {
       {user ? (
         <>
           <Header user={user} isStudent={false} />
-          {false ? <StudentPage /> : <TeacherPage />}
+          <UserPage />
         </>
       ) : <div className={styles.loader}><CircularProgress /></div>}
     </div>

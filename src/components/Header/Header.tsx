@@ -1,4 +1,5 @@
 import LogoutIcon from '@mui/icons-material/Logout';
+import MenuIcon from '@mui/icons-material/Menu';
 import Avatar from '@mui/material/Avatar';
 import { UserAgentApplication } from 'msal';
 import { memo, useEffect, useState } from 'react';
@@ -55,6 +56,9 @@ function Header(props: IProps) {
         </div>
         <div role="none" onClick={logout} className={styles.logout}>
           <LogoutIcon />
+        </div>
+        <div role="none" onClick={logout} className={styles.logoutMobile}>
+          <MenuIcon />
         </div>
       </div>
     </div>

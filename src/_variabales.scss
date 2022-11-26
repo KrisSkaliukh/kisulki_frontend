@@ -3,3 +3,13 @@ $active-button: #21BA72;
 $hover-button-color: #44D370;
 $disabled-button-font-color: #A6A6B6;
 $disabled-button: #F2F2F5;
+$breakpoints: (
+'extra-small': 320px,
+'small-mobile': 400px,
+'mobile': 767px,
+'small': 1023px,
+'large': 1200px,
+'extra-large': 1350px,
+'xxl': 1450px,
+'xxxl': 1650px,
+) !default;
