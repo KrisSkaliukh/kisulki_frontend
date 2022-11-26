@@ -131,8 +131,8 @@ function LessonCard({
         checkRegistrationStatus() === 'Регистрация продолжается'
           && (
             <Modal
-              width="480px"
-              height={checkRegistrationStatus() === 'Регистрация окончена' ? '300px' : '400px'}
+              width={isMobile ? '90%' : '480px'}
+              height="300px"
               renderContent={() => (
                 <StudentLectionRegister
                   title={title}
