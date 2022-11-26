@@ -49,3 +49,15 @@
 
   cursor: pointer;
 }
+
+@mixin disabledButton() {
+  background-color: $disabled-button;
+  color: $disabled-button-font-color;
+  border: 0;
+  
+  border-radius: 42px;
+  font-weight: bold;
+  font-size: 16px;
+
+  cursor: not-allowed;
+}

@@ -84,7 +84,11 @@ function FutureLectionContent({
       />
       <div className={classes.buttonContainer}>
         <Button title="Отмена" onClick={onClose} isPrimary={false} />
-        <Button title="Редактировать занятие" isPrimary />
+        <Button
+          title="Редактировать занятие"
+          isPrimary
+          disabled={dateValue === date && registrationDuration === registrationTime}
+        />
       </div>
     </div>
   );
