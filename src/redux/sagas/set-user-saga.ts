@@ -1,22 +1,31 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import {
+  call,
   put,
   takeLatest,
 } from 'redux-saga/effects';
 
+import AuthAPI from '../../api/auth';
 import { receiveSetUser, rejectSetUser, requestSetUser } from '../actions';
 
 interface ISetUserAction {
   type: string;
-  payload: {
-    user: any;
-  }
+  payload: any;
 }
 
 const setUser = function* setUser(action: ISetUserAction) {
   try {
-    console.log(action.payload.user);
-    yield put(receiveSetUser({ user: action.payload }));
+    // @ts-ignore
+    const user: any = yield call(AuthAPI, {
+      id: action.payload.id,
+      firstName: action.payload.givenName,
+      lastName: action.payload.surname,
+      jobTitle: action.payload.jobTitle,
+      token: action.payload.accessToken,
+    });
+    yield put(receiveSetUser({ user }));
   } catch (error) {
+    console.log(error);
     yield put(rejectSetUser({ error }));
   }
 };

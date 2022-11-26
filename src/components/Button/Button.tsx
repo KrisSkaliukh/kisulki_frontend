@@ -1,13 +1,22 @@
 import { memo } from 'react';
 
+import classes from './button.module.scss';
+
 interface IButtonProps {
   title: string;
-  onClick: () => void;
+  onClick?: () => void;
+  isPrimary: boolean;
 }
 
-function Button({ title, onClick }: IButtonProps) {
+function Button({ title, onClick, isPrimary }: IButtonProps) {
   return (
-    <button onClick={onClick} type="button">{title}</button>
+    <button
+      onClick={onClick}
+      className={isPrimary ? classes.primaryButton : classes.secondaryButton}
+      type="button"
+    >
+      {title}
+    </button>
   );
 }
 

@@ -17,3 +17,35 @@
   }
 }
 
+@mixin primaryButton() {
+  background-color: $active-button;
+  border: 0;
+  color: white;
+
+  &:hover {
+    background-color: $hover-button-color;
+  }
+
+  border-radius: 42px;
+  font-weight: bold;
+  font-size: 16px;
+
+  cursor: pointer;
+}
+
+@mixin secondaryButton() {
+  background-color: white;
+  border: 0;
+  color: $active-button;
+
+  &:hover {
+    background-color: $hover-button-color;
+    color: white;
+  }
+  
+  border-radius: 42px;
+  font-weight: bold;
+  font-size: 16px;
+
+  cursor: pointer;
+}
