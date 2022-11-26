@@ -1,14 +1,28 @@
+@import '../../variabales';
+@import '../../mixins';
+
 .header {
     height: 70px;
     padding: 0 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @include respond-to(mobile) {
+        padding: 0 20px;
+        background-color: bisque;
+        height: 100px;
+    }
 }
 
 .logo {
     height: 50px;
     width: 50px;
+
+    @include respond-to(mobile) {
+        height: 70px;
+        width: 70px;
+    }
 }
 
 .userInfo {
@@ -35,4 +49,17 @@
 .logout {
     cursor: pointer;
     margin-left: 50px;
+
+    @include respond-to(mobile) {
+        display: none;
+    }
+}
+
+.logoutMobile {
+    display: none;
+
+    @include respond-to(mobile) {
+        display: block;
+        margin-left: 15px;
+    }
 }
