@@ -5,12 +5,13 @@ import classes from './chip.module.scss';
 interface IChipProps {
   title: string;
   color: string;
+  textColor: string;
 }
 
-function Chip({ title, color }: IChipProps) {
+function Chip({ title, color, textColor }: IChipProps) {
   return (
     <div style={{ backgroundColor: color }} className={classes.chip}>
-      <p>{title}</p>
+      <p style={{ color: textColor }}>{title}</p>
     </div>
   );
 }

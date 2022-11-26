@@ -56,7 +56,6 @@ function Login() {
   };
 
   const finalStep = (authResponseWithAccessToken: AuthResponse) => {
-    console.log('final step');
     getUserData(authResponseWithAccessToken);
   };
 
@@ -66,7 +65,6 @@ function Login() {
         const silentRes = await msalInstance!.acquireTokenSilent({ scopes });
         finalStep(silentRes);
       } catch (err) {
-        console.log('not silent');
         msalInstance!.acquireTokenRedirect({ scopes });
       }
     } catch (error: any) {

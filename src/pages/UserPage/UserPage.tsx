@@ -15,8 +15,8 @@ function UserPage() {
     <div className={styles.content}>
       {user ? (
         <>
-          <Header user={user} isStudent={user.jobTitle === 'студент'} />
-          {user.jobTitle === 'студент' ? <StudentPage /> : <TeacherPage />}
+          <Header user={user} isStudent={false} />
+          {false ? <StudentPage /> : <TeacherPage />}
         </>
       ) : <div className={styles.loader}><CircularProgress /></div>}
     </div>
