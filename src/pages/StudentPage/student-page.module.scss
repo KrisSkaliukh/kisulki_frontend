@@ -72,6 +72,7 @@
   right: -20%;
   z-index: 10;
   align-items: center;
+  justify-content: center;
   transition: ease-in 1s;
   background-color: rgb(224, 175, 255);
   width: 120%;
@@ -93,6 +94,7 @@
   left: -20%;
   z-index: 10;
   align-items: center;
+  justify-content: center;
   transition: ease-in 1s;
   background-color: rgb(169, 226, 235);
   width: 120%;
@@ -108,8 +110,26 @@
 }
 
 .hiddenText {
-  transition: ease-in 1s;
+  transition: ease-in 0.4s;
   text-align: center;
   transform: skewX(20deg);
   font-size: 0;
+}
+
+.selectedModeOnline, .selectedModeOffline {
+  width: 100%;
+  text-align: center;
+  padding: 20%;
+}
+
+.selectedModeOnline {
+  background-color: rgb(224, 175, 255);
+}
+
+.selectedModeOffline {
+  background-color: rgb(169, 226, 235);
+}
+
+.selectedModeTitle {
+  font-size: 2rem;
 }
