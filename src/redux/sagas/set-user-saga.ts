@@ -22,6 +22,7 @@ const setUser = function* setUser(action: ISetUserAction) {
       lastName: action.payload.surname,
       jobTitle: action.payload.jobTitle,
       token: action.payload.accessToken,
+      displayName: action.payload.displayName,
     });
     yield put(receiveSetUser({
       user: {
