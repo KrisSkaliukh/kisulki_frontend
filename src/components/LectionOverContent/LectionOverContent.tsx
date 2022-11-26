@@ -8,6 +8,7 @@ import classes from './lection-over-content.module.scss';
 interface ILessonCardProps {
   title: string;
   group: string;
+  audience: string;
   date: Date;
   studentsNum: number;
   checkedStudentsNum: number;
@@ -17,6 +18,7 @@ interface ILessonCardProps {
 function LectionOverContent({
   title,
   group,
+  audience,
   date,
   studentsNum,
   checkedStudentsNum,
@@ -25,12 +27,13 @@ function LectionOverContent({
   return (
     <div className={classes.content}>
       <div className={classes.header}>
-        <h2>{`Занятие: ${title}`}</h2>
+        <h2>{`Дисциплина: ${title}`}</h2>
         <div role="none" onClick={onClose}>
           <CloseIcon />
         </div>
       </div>
       <p>{`Группа: ${group}`}</p>
+      <p>{`Аудитория: ${audience}`}</p>
       <p>{`Дата занятия: ${moment(date).format('DD/MM/YYYY HH:MM')}`}</p>
       <p>{`Количество посетивших: ${checkedStudentsNum}/${studentsNum}`}</p>
       <div className={classes.buttonContainer}>
