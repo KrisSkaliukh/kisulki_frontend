@@ -12,6 +12,7 @@ interface ILessonCardProps {
   date: Date;
   registrationTime: number;
   group: string;
+  onActiveLessonClick: (lesson: any) => void;
 }
 
 function LessonCard({
@@ -19,6 +20,7 @@ function LessonCard({
   date,
   registrationTime,
   group,
+  onActiveLessonClick,
 }: ILessonCardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -57,7 +59,17 @@ function LessonCard({
       <div
         className={classes.card}
         role="none"
-        onClick={() => setIsModalOpen(true)}
+        onClick={() => {
+          if (checkRegistrationStatus() === 'Регистрация продолжается') {
+            onActiveLessonClick({
+              title,
+              registrationTime,
+              group,
+            });
+          } else {
+            setIsModalOpen(true);
+          }
+        }}
       >
         <div className={classes.title}>
           <h2>{title}</h2>
