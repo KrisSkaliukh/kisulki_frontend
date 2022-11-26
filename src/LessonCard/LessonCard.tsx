@@ -67,8 +67,6 @@ function LessonCard({
     }
     return '#059669';
   };
-  console.log(isModalOpen);
-  console.log(isStudent, 123);
   return (
     <>
       <div
