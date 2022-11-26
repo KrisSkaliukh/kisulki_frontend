@@ -59,7 +59,7 @@ function Lection({ currentLesson }: ILectionProps) {
       }
       return item;
     })]);
-  }
+  };
 
   useEffect(() => {
     setUsers(usersConstant);
