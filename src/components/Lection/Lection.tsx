@@ -10,6 +10,7 @@ import classes from './lection.module.scss';
 
 interface ILectionProps {
   currentLesson: any;
+  onClose: any;
 }
 
 const usersConstant = [
@@ -47,7 +48,7 @@ const usersConstant = [
 
 const columns = ['Посещение', 'ФИО', 'Группа'];
 
-function Lection({ currentLesson }: ILectionProps) {
+function Lection({ currentLesson, onClose }: ILectionProps) {
   const [isEditEnabled, setIsEditEnabled] = useState(false);
   const [users, setUsers] = useState<any>([]);
 
@@ -96,6 +97,7 @@ function Lection({ currentLesson }: ILectionProps) {
         </TableBody>
       </Table>
       <div className={classes.button}>
+        <Button onClick={onClose} title="Назад" isPrimary={false} />
         <Button title="Сохранить" disabled={!isEditEnabled} isPrimary />
       </div>
     </div>

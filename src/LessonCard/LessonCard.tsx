@@ -99,7 +99,7 @@ function LessonCard({
           />
         </div>
       </div>
-      {isModalOpen && !isStudent && (
+      {isModalOpen && true && (
         <Modal
           width={isMobile ? '90%' : '480px'}
           height={checkRegistrationStatus() === 'Регистрация окончена' ? '400px' : '500px'}
@@ -127,7 +127,7 @@ function LessonCard({
             ))}
         />
       )}
-      {isModalOpen && isStudent && (
+      {isModalOpen && false && (
         <Modal
           width="480px"
           height={checkRegistrationStatus() === 'Регистрация окончена' ? '300px' : '400px'}
