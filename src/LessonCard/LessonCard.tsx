@@ -22,7 +22,15 @@ function LessonCard({
 }: ILessonCardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const isRegistrationOver = moment(date).add(registrationTime, 'm').toDate() < new Date();
+  const checkRegistrationStatus = () => {
+    if (moment(date).isAfter(new Date())) {
+      return 'Регистрация не начата';
+    }
+    if (moment(date).add(registrationTime, 'm').isAfter(new Date()) && moment(date).isBefore(new Date())) {
+      return 'Регистрация продолжается';
+    }
+    return 'Регистрация окончена';
+  };
   return (
     <>
       <div
@@ -37,17 +45,17 @@ function LessonCard({
           <p>{`Группа: ${group}`}</p>
           <p>{`Дата занятия: ${moment(date).format('DD/MM/YYYY HH:MM')}`}</p>
           <Chip
-            title={isRegistrationOver ? 'Регистрация окончена' : 'Регистрация продолжается'}
-            color={isRegistrationOver ? '#fef2f2' : '#ecfdf5'}
-            textColor={isRegistrationOver ? '#ef4444' : '#059669'}
+            title={checkRegistrationStatus()}
+            color={checkRegistrationStatus() === 'Регистрация окончена' ? '#fef2f2' : '#ecfdf5'}
+            textColor={checkRegistrationStatus() === 'Регистрация окончена' ? '#ef4444' : '#059669'}
           />
         </div>
       </div>
       {isModalOpen && (
         <Modal
           width="480px"
-          height={isRegistrationOver ? '300px' : '400px'}
-          renderContent={() => (isRegistrationOver
+          height={checkRegistrationStatus() === 'Регистрация окончена' ? '300px' : '400px'}
+          renderContent={() => (checkRegistrationStatus() === 'Регистрация окончена'
             ? (
               <LectionOverContent
                 title={title}

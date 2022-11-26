@@ -33,7 +33,6 @@ function Header(props: IProps) {
   const logout = async () => {
     localStorage.clear();
     dispatch(requestSetUser(null));
-    console.log(localStorage);
     if (msalInstance) {
       msalInstance.logout();
     }

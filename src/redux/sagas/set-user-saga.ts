@@ -23,7 +23,12 @@ const setUser = function* setUser(action: ISetUserAction) {
       jobTitle: action.payload.jobTitle,
       token: action.payload.accessToken,
     });
-    yield put(receiveSetUser({ user }));
+    yield put(receiveSetUser({
+      user: {
+        ...user,
+        displayName: action.payload.displayName,
+      },
+    }));
   } catch (error) {
     console.log(error);
     yield put(rejectSetUser({ error }));
