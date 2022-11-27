@@ -135,7 +135,7 @@ function LessonCard({
           && (
             <Modal
               width={isMobile ? '90%' : '480px'}
-              height="300px"
+              height={isMobile ? '340px' : '320px'}
               renderContent={() => (
                 <StudentLectionRegister
                   title={title}

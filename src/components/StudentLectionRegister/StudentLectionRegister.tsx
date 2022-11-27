@@ -21,6 +21,7 @@ function StudentLectionRegister({
   const onCodeSend = () => {
     dispatch(requestCodeSend());
   };
+
   return (
     <div className={classes.content}>
       <div className={classes.header}>
