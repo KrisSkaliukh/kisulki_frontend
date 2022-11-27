@@ -137,7 +137,7 @@ function LessonCard({
         />
       )}
       {isModalOpen && isStudent && (
-        checkRegistrationStatus() === 'Регистрация окончена'
+        checkRegistrationStatus() === 'Регистрация продолжается'
           && (
             <Modal
               width={isMobile ? '90%' : '480px'}
