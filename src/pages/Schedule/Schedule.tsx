@@ -10,9 +10,7 @@ import styles from './schedule.module.scss';
 function Schedule() {
   const [activeOption, setActiveOption] = useState('left');
 
-  const user = useSelector<RootState, any>((state) => state.mainReducer.user);
   const lessons = useSelector<RootState, any>((state) => state.mainReducer.lessons);
-  const isStudent = user.user.role === 'student';
 
   const handleSwitchOption = (option: string) => {
     if (option === 'left') return setActiveOption('right');
@@ -31,22 +29,16 @@ function Schedule() {
     setLectionOpen(false);
   };
 
-  console.log(lessons);
-
   return (
     <div className={styles.content}>
       {isLectionOpen ? <Lection onClose={onActiveLessonClose} currentLesson={currentLesson} /> : (
         <>
           <div className={styles.title}>
             <h1>Расписание занятий</h1>
-            {isStudent
-      && (
-      <Switch
-        activeOption={activeOption}
-        onChange={() => handleSwitchOption(activeOption)}
-      />
-
-      )}
+            <Switch
+              activeOption={activeOption}
+              onChange={() => handleSwitchOption(activeOption)}
+            />
           </div>
           <div className={styles.cardsContainer}>
             {lessons
@@ -60,11 +52,13 @@ function Schedule() {
                     : item.title.slice(0, item.title.length - 5)}
                   date={item.start}
                   registrationTime={item.registrationTime}
-                  group={item.group}
                   audience={item.title.split(' ')[item.title.split(' ').length - 1]}
                   teacher={item.teacher}
                   onActiveLessonClick={onActiveLessonClick}
                   code={item.code}
+                  group={`${item.groups.map(
+                    (i: any) => i.title,
+                  )}`}
                 />
               ))}
           </div>
