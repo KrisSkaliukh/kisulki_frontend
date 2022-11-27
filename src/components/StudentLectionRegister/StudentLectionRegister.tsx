@@ -23,10 +23,6 @@ function StudentLectionRegister({
   const [code, setCode] = useState('');
   const dispatch = useDispatch();
 
-  const handleInput = (value: any) => {
-    console.log(value);
-  };
-
   const onCodeSend = () => {
     dispatch(requestCodeSend({ userId, lectureId, code }));
   };
@@ -41,7 +37,6 @@ function StudentLectionRegister({
       </div>
       <TextField
         label="Код лекции"
-        onChange={(value) => handleInput(value)}
         className={classes.lectionCode}
         value={code}
         onChange={(event) => setCode(event.target.value)}
