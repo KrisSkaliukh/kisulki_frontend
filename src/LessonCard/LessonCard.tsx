@@ -1,4 +1,5 @@
 import { useMediaQuery } from '@mui/material';
+import cn from 'classnames';
 import moment from 'moment';
 import { memo, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -74,7 +75,9 @@ function LessonCard({
   return (
     <>
       <div
-        className={classes.card}
+        className={cn(classes.card, {
+          [classes.cardDisable]: checkRegistrationStatus() !== 'Регистрация продолжается',
+        })}
         role="none"
         onClick={() => {
           if (checkRegistrationStatus() === 'Регистрация окончена' && isStudent) {
@@ -138,7 +141,7 @@ function LessonCard({
           && (
             <Modal
               width={isMobile ? '90%' : '480px'}
-              height="330px"
+              height={isMobile ? '340px' : '320px'}
               renderContent={() => (
                 <StudentLectionRegister
                   title={title}

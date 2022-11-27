@@ -17,7 +17,8 @@ function Header(props: IProps) {
   const [msalInstance, setMsalInstance] = useState<UserAgentApplication | undefined>(undefined);
 
   const { isStudent, user } = props;
-  const group = isStudent ? 'ПИ-131' : '';
+  console.log(user);
+  const group = isStudent ? user.group.title : '';
 
   const dispatch = useDispatch();
 
@@ -48,7 +49,7 @@ function Header(props: IProps) {
         <img src="logo_sfedu.png" alt="logo" height="50px" width="50px" />
       </div>
       <div className={styles.logoMobile}>
-        <img src="logo_sfedu.png" alt="logo" height="90px" width="90px" />
+        <img src="logo_sfedu.png" alt="logo" height="60px" width="60px" />
       </div>
       <div className={styles.userInfo}>
         <div className={styles.name}>

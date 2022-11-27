@@ -8,6 +8,13 @@
     width: 100%;
     box-sizing: border-box;
     padding: 24px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    -webkit-line-clamp: 4;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 
     h2 {
       color: #292b3f;
@@ -27,7 +34,7 @@
   .content {
     width: 100%;
     box-sizing: border-box;
-    padding: 24px;
+    padding: 20px;
 
     p {
       color: #64748b;
@@ -37,6 +44,17 @@
 
     div {
       margin-top: 50px;
+    }
+  }
+}
+
+.cardDisable {
+  cursor: no-drop;
+
+  &:hover {
+    border: 1px solid #e5e5e5;
+    .title {
+      border-color: #e5e5e5;;
     }
   }
 }
