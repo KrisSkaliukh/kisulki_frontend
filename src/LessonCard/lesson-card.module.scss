@@ -8,6 +8,9 @@
     width: 100%;
     box-sizing: border-box;
     padding: 24px;
+    height: 120px;
+    display: flex;
+    align-items: center;
 
     h2 {
       color: #292b3f;
@@ -27,7 +30,7 @@
   .content {
     width: 100%;
     box-sizing: border-box;
-    padding: 24px;
+    padding: 20px;
 
     p {
       color: #64748b;

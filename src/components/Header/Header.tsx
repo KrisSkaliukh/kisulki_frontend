@@ -17,7 +17,7 @@ function Header(props: IProps) {
   const [msalInstance, setMsalInstance] = useState<UserAgentApplication | undefined>(undefined);
 
   const { isStudent, user } = props;
-  const group = isStudent ? 'ПИ-131' : '';
+  const group = isStudent ? 'КТсо4-5' : '';
 
   const dispatch = useDispatch();
 
