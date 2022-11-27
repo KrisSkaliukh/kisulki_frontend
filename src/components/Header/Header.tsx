@@ -48,7 +48,7 @@ function Header(props: IProps) {
         <img src="logo_sfedu.png" alt="logo" height="50px" width="50px" />
       </div>
       <div className={styles.logoMobile}>
-        <img src="logo_sfedu.png" alt="logo" height="90px" width="90px" />
+        <img src="logo_sfedu.png" alt="logo" height="60px" width="60px" />
       </div>
       <div className={styles.userInfo}>
         <div className={styles.name}>

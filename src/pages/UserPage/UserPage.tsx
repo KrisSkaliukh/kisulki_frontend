@@ -6,8 +6,6 @@ import Header from '../../components/Header';
 import { requestGetSchedule } from '../../redux/actions';
 import { RootState } from '../../redux/reducers/rootReducer';
 import Schedule from '../Schedule';
-// import StudentPage from '../StudentPage';
-// import TeacherPage from '../TeacherPage';
 import styles from './user-page.module.scss';
 
 function UserPage() {
@@ -23,7 +21,7 @@ function UserPage() {
     <div className={styles.content}>
       {user ? (
         <>
-          <Header user={user} isStudent={user.role === 'student'} />
+          <Header user={user} isStudent={user.user.role === 'student'} />
           <Schedule />
         </>
       ) : <div className={styles.loader}><CircularProgress /></div>}
