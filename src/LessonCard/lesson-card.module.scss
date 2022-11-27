@@ -11,6 +11,10 @@
     height: 120px;
     display: flex;
     align-items: center;
+    -webkit-line-clamp: 4;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 
     h2 {
       color: #292b3f;

@@ -10,7 +10,7 @@
     box-shadow: rgb(100 116 139 / 30%) 0px 2px 3px;
 
     @include respond-to(mobile) {
-        padding: 0 40px;
+        padding: 0 20px;
         height: 130px;
     }
 }

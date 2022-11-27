@@ -16,7 +16,12 @@ function StudentLectionRegister({
   title,
   onClose,
 }: ILessonCardProps) {
+  // const [code, setCode] = useState('');
   const dispatch = useDispatch();
+
+  const handleInput = (value: any) => {
+    console.log(value);
+  };
 
   const onCodeSend = () => {
     dispatch(requestCodeSend());
@@ -32,6 +37,7 @@ function StudentLectionRegister({
       </div>
       <TextField
         label="Код лекции"
+        onChange={(value) => handleInput(value)}
         className={classes.lectionCode}
         sx={{
           width: { sm: 250, md: 350 },
