@@ -9,15 +9,10 @@ import styles from './schedule.module.scss';
 
 function Schedule() {
   const [activeOption, setActiveOption] = useState('left');
-  // const [modeLessons, setModeLessons] = useState('offline');
 
   const user = useSelector<RootState, any>((state) => state.mainReducer.user);
   const lessons = useSelector<RootState, any>((state) => state.mainReducer.lessons);
-  console.log(lessons);
   const isStudent = user.user.role === 'student';
-
-  // console.log(i);
-  // console.log(i.audience.toLowerCase().includes('lms'));
 
   const handleSwitchOption = (option: string) => {
     if (option === 'left') return setActiveOption('right');
@@ -35,6 +30,8 @@ function Schedule() {
   const onActiveLessonClose = () => {
     setLectionOpen(false);
   };
+
+  console.log(lessons);
 
   return (
     <div className={styles.content}>
@@ -57,11 +54,13 @@ function Schedule() {
               .map((item: any) => (
                 <LessonCard
                   key={item.id}
-                  title={item.title}
+                  title={item.title.includes('LMS') && !item.title.includes('LMS-')
+                    ? item.title.slice(0, item.title.length - 3)
+                    : item.title.slice(0, item.title.length - 5)}
                   date={item.start}
                   registrationTime={item.registrationTime}
                   group={item.group}
-                  audience={item.audience}
+                  audience={item.title.split(' ')[item.title.split(' ').length - 1]}
                   teacher={item.teacher}
                   onActiveLessonClick={onActiveLessonClick}
                   code={item.code}
