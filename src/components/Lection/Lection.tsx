@@ -16,6 +16,15 @@ interface ILectionProps {
   onClose: any;
 }
 
+const rows = [
+  {
+    id: 1,
+    checked: true,
+    displayName: 'Метус Максим Игоревич',
+    group: 'КТсо4-5',
+  },
+];
+
 const columns = ['Посещение', 'ФИО', 'Группа'];
 
 function Lection({ currentLesson, onClose }: ILectionProps) {
@@ -68,7 +77,7 @@ function Lection({ currentLesson, onClose }: ILectionProps) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {users.map((user: any) => (
+          {rows.map((user: any) => (
             <TableRow>
               <TableCell>
                 <Checkbox checked={user.checked} onChange={() => onCheckedChange(user.id)} />
