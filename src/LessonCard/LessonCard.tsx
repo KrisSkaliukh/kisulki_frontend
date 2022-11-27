@@ -80,7 +80,7 @@ function LessonCard({
         })}
         role="none"
         onClick={() => {
-          if (checkRegistrationStatus() === 'Регистрация окончена' && isStudent) {
+          if (checkRegistrationStatus() === 'Регистрация продолжается' && !isStudent) {
             onActiveLessonClick({
               id,
               title,
@@ -108,7 +108,7 @@ function LessonCard({
           />
         </div>
       </div>
-      {isModalOpen && isStudent && (
+      {isModalOpen && !isStudent && (
         <Modal
           width={isMobile ? '90%' : '480px'}
           height={checkRegistrationStatus() === 'Регистрация окончена' ? '400px' : '500px'}
@@ -136,7 +136,7 @@ function LessonCard({
             ))}
         />
       )}
-      {isModalOpen && !isStudent && (
+      {isModalOpen && isStudent && (
         checkRegistrationStatus() === 'Регистрация окончена'
           && (
             <Modal
