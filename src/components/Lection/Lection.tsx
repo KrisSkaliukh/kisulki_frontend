@@ -69,7 +69,7 @@ function Lection({ currentLesson, onClose }: ILectionProps) {
   return (
     <div className={classes.content}>
       <h1>{currentLesson.title}</h1>
-      <h2>Код лекции для отметки посещения: 123456</h2>
+      <h2>{`Код лекции для отметки посещения: ${currentLesson.code}`}</h2>
       <Table>
         <TableHead>
           <TableRow>

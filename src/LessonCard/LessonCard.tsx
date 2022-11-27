@@ -21,6 +21,7 @@ interface ILessonCardProps {
   group: string;
   onActiveLessonClick: (lesson: any) => void;
   teacher: string;
+  code: string;
 }
 
 function LessonCard({
@@ -31,6 +32,7 @@ function LessonCard({
   onActiveLessonClick,
   audience,
   teacher,
+  code,
 }: ILessonCardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -81,6 +83,7 @@ function LessonCard({
               title,
               registrationTime,
               group,
+              code,
             });
           } else {
             setIsModalOpen(true);

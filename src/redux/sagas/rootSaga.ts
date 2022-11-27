@@ -1,7 +1,9 @@
 import { all } from 'redux-saga/effects';
 
+import getGroupsWatcher from './get-groups';
 import getScheduleWatcher from './get-schedule';
 import sendCodeWatcher from './send-code';
+import sendGroupWatcher from './send-group';
 import setUserWatcher from './set-user-saga';
 
 export default function* rootSaga() {
@@ -9,5 +11,7 @@ export default function* rootSaga() {
     setUserWatcher(),
     getScheduleWatcher(),
     sendCodeWatcher(),
+    getGroupsWatcher(),
+    sendGroupWatcher(),
   ]);
 }

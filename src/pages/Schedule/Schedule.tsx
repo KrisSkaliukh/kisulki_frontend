@@ -7,64 +7,13 @@ import LessonCard from '../../LessonCard';
 import { RootState } from '../../redux/reducers/rootReducer';
 import styles from './schedule.module.scss';
 
-const lessons = [
-  {
-    id: 1,
-    title: 'Организационное и правовое обеспечение информационной безопасности',
-    date: new Date(2022, 10, 21),
-    registrationTime: 30,
-    group: 'КТсо4-5',
-    audience: 'LMS',
-    teacher: 'Князева М. В.',
-    isOnline: true,
-  },
-  {
-    id: 1,
-    title: 'Программно-аппаратная защита информации',
-    date: new Date(2025, 0, 20),
-    registrationTime: 30,
-    group: 'КТсо4-5',
-    audience: 'И-241',
-    teacher: 'Бабенко Л. К.',
-    isOnline: false,
-  },
-  {
-    id: 1,
-    title: 'Организационное и правовое обеспечение информационной безопасности',
-    date: new Date(),
-    registrationTime: 30,
-    group: 'КТсо4-5',
-    audience: 'LMS',
-    teacher: 'Князева М. В.',
-    isOnline: true,
-  },
-  {
-    id: 1,
-    title: 'Безопасность персональных и фискальных данных',
-    date: new Date(),
-    registrationTime: 30,
-    group: 'КТсо4-5',
-    audience: 'И-241',
-    teacher: 'Басан А. С.',
-    isOnline: false,
-  },
-  {
-    id: 1,
-    title: 'Криптографические протоколы и стандарты',
-    date: new Date(),
-    registrationTime: 30,
-    group: 'КТсо4-5',
-    audience: 'И-241',
-    teacher: 'Пескова О. Ю.',
-    isOnline: false,
-  },
-];
-
 function Schedule() {
   const [activeOption, setActiveOption] = useState('left');
   // const [modeLessons, setModeLessons] = useState('offline');
 
   const user = useSelector<RootState, any>((state) => state.mainReducer.user);
+  const lessons = useSelector<RootState, any>((state) => state.mainReducer.lessons);
+  console.log(lessons);
   const isStudent = user.user.role === 'student';
 
   // console.log(i);
@@ -105,16 +54,17 @@ function Schedule() {
           <div className={styles.cardsContainer}>
             {lessons
               .filter((i: any) => (activeOption === 'left' ? !i.isOnline : i.isOnline))
-              .map((item) => (
+              .map((item: any) => (
                 <LessonCard
                   key={item.id}
                   title={item.title}
-                  date={item.date}
+                  date={item.start}
                   registrationTime={item.registrationTime}
                   group={item.group}
                   audience={item.audience}
                   teacher={item.teacher}
                   onActiveLessonClick={onActiveLessonClick}
+                  code={item.code}
                 />
               ))}
           </div>

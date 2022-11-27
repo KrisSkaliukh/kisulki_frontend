@@ -2,6 +2,7 @@ import { CircularProgress } from '@mui/material';
 import { memo, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import FirstLoginSelect from '../../components/FirstLoginSelect';
 import Header from '../../components/Header';
 import { requestGetSchedule } from '../../redux/actions';
 import { RootState } from '../../redux/reducers/rootReducer';
@@ -14,15 +15,24 @@ function UserPage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(requestGetSchedule());
-  }, []);
-
+    if (user && user.user.isFirstLogin && user.user.role === 'student') {
+      return undefined;
+    }
+    if (user && user.user.role === 'student') {
+      dispatch(requestGetSchedule({ groupId: user.group.id, surname: null }));
+    }
+    if (user && user.user.role !== 'student') {
+      dispatch(requestGetSchedule({ groupId: null, surname: user.displayName }));
+    }
+    return undefined;
+  }, [user]);
   return (
     <div className={styles.content}>
       {user ? (
         <>
           <Header user={user} isStudent={user.user.role === 'student'} />
-          <Schedule />
+          {user.user.isFirstLogin && user.user.role === 'student' ? <FirstLoginSelect />
+            : <Schedule />}
         </>
       ) : <div className={styles.loader}><CircularProgress /></div>}
     </div>
