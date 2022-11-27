@@ -1,4 +1,8 @@
-import { Autocomplete, CircularProgress, TextField } from '@mui/material';
+import {
+  CircularProgress,
+  TextField,
+} from '@mui/material';
+import Autocomplete from '@mui/material/Autocomplete';
 import { memo, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -34,6 +38,7 @@ function FirstLoginSelect() {
             <Autocomplete
               options={groups.map((item: any) => item.title)}
               value={groupValue}
+              autoComplete
               onChange={(event, value) => {
                 const newValue = groups.find((item: any) => item.title === value);
                 setGroupValue(newValue.title);

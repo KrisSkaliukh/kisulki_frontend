@@ -14,6 +14,7 @@ import mediaQueries from '../utils/media-query/media-query';
 import classes from './lesson-card.module.scss';
 
 interface ILessonCardProps {
+  id: string;
   title: string;
   date: Date;
   registrationTime: number;
@@ -25,6 +26,7 @@ interface ILessonCardProps {
 }
 
 function LessonCard({
+  id,
   title,
   date,
   registrationTime,
@@ -78,8 +80,9 @@ function LessonCard({
         })}
         role="none"
         onClick={() => {
-          if (checkRegistrationStatus() === 'Регистрация продолжается' && !isStudent) {
+          if (checkRegistrationStatus() === 'Регистрация окончена' && isStudent) {
             onActiveLessonClick({
+              id,
               title,
               registrationTime,
               group,
@@ -105,7 +108,7 @@ function LessonCard({
           />
         </div>
       </div>
-      {isModalOpen && !isStudent && (
+      {isModalOpen && isStudent && (
         <Modal
           width={isMobile ? '90%' : '480px'}
           height={checkRegistrationStatus() === 'Регистрация окончена' ? '400px' : '500px'}
@@ -133,8 +136,8 @@ function LessonCard({
             ))}
         />
       )}
-      {isModalOpen && isStudent && (
-        checkRegistrationStatus() === 'Регистрация продолжается'
+      {isModalOpen && !isStudent && (
+        checkRegistrationStatus() === 'Регистрация окончена'
           && (
             <Modal
               width={isMobile ? '90%' : '480px'}
@@ -143,6 +146,8 @@ function LessonCard({
                 <StudentLectionRegister
                   title={title}
                   onClose={() => setIsModalOpen(false)}
+                  lectureId={id}
+                  userId={user.user.id}
                 />
               )}
             />

@@ -1,5 +1,5 @@
 import { TextField } from '@mui/material';
-import { memo } from 'react';
+import { memo, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { requestCodeSend } from '../../redux/actions';
@@ -10,13 +10,17 @@ import classes from './student-lection-register.module.scss';
 interface ILessonCardProps {
   title: string;
   onClose: () => void;
+  lectureId: any;
+  userId: any;
 }
 
 function StudentLectionRegister({
   title,
   onClose,
+  lectureId,
+  userId,
 }: ILessonCardProps) {
-  // const [code, setCode] = useState('');
+  const [code, setCode] = useState('');
   const dispatch = useDispatch();
 
   const handleInput = (value: any) => {
@@ -24,7 +28,7 @@ function StudentLectionRegister({
   };
 
   const onCodeSend = () => {
-    dispatch(requestCodeSend());
+    dispatch(requestCodeSend({ userId, lectureId, code }));
   };
 
   return (
@@ -39,6 +43,8 @@ function StudentLectionRegister({
         label="Код лекции"
         onChange={(value) => handleInput(value)}
         className={classes.lectionCode}
+        value={code}
+        onChange={(event) => setCode(event.target.value)}
         sx={{
           width: { sm: 250, md: 350 },
           '& .MuiOutlinedInput-root:hover': {

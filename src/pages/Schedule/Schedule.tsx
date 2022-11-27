@@ -54,6 +54,7 @@ function Schedule() {
               .map((item: any) => (
                 <LessonCard
                   key={item.id}
+                  id={item.id}
                   title={item.title.includes('LMS') && !item.title.includes('LMS-')
                     ? item.title.slice(0, item.title.length - 3)
                     : item.title.slice(0, item.title.length - 5)}

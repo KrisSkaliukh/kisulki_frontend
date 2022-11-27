@@ -11,8 +11,12 @@ import {
   GET_SCHEDULE_RECEIVED,
   GET_SCHEDULE_REJECTED,
   GET_SCHEDULE_REQUESTED,
+  LECTURE_EDIT_RECEIVED,
   SEND_REGITRATION_CODE_REJECTED,
   SET_USER_RECEIVED,
+  USERS_RECEIVED,
+  USERS_REJECTED,
+  USERS_REQUESTED,
 } from '../actions';
 
 const initialState = {
@@ -21,6 +25,7 @@ const initialState = {
   error: '',
   lessons: [],
   groups: [],
+  lectureUsers: [],
 };
 
 const mainReducer: Reducer<any, Action> = (state = initialState, action: Action) => {
@@ -108,6 +113,33 @@ const mainReducer: Reducer<any, Action> = (state = initialState, action: Action)
       return {
         ...state,
         isLoading: false,
+      };
+    }
+    case USERS_REQUESTED: {
+      return {
+        ...state,
+        isLoading: true,
+      };
+    }
+    case USERS_RECEIVED: {
+      const { payload } = action as Action<any>;
+      return {
+        ...state,
+        isLoading: false,
+        lectureUsers: payload.lectureUsers,
+      };
+    }
+    case USERS_REJECTED: {
+      return {
+        ...state,
+        isLoading: false,
+      };
+    }
+    case LECTURE_EDIT_RECEIVED: {
+      const { payload } = action as Action<any>;
+      return {
+        ...state,
+        lectureUsers: payload.lectureUsers,
       };
     }
     default:
