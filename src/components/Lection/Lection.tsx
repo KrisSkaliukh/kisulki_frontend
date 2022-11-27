@@ -4,7 +4,10 @@ import {
   Table, TableBody, TableCell, TableHead, TableRow,
 } from '@mui/material';
 import { memo, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { requestLectureEdit, requestUsers } from '../../redux/actions';
+import { RootState } from '../../redux/reducers/rootReducer';
 import Button from '../Button';
 import classes from './lection.module.scss';
 
@@ -13,58 +16,42 @@ interface ILectionProps {
   onClose: any;
 }
 
-const usersConstant = [
-  {
-    id: 1,
-    displayName: 'Метус Максим',
-    group: 'Группа 8 отдела',
-    checked: true,
-  },
-  {
-    id: 2,
-    displayName: 'Скалиух Кристина',
-    group: 'Группа 8 отдела',
-    checked: true,
-  },
-  {
-    id: 3,
-    displayName: 'Смеловский Денис',
-    group: 'Группа 8 отдела',
-    checked: true,
-  },
-  {
-    id: 4,
-    displayName: 'Дима Пикара',
-    group: 'Группа 8 отдела',
-    checked: false,
-  },
-  {
-    id: 5,
-    displayName: 'Дима Пономарев',
-    group: 'Группа 8 отдела',
-    checked: false,
-  },
-];
-
 const columns = ['Посещение', 'ФИО', 'Группа'];
 
 function Lection({ currentLesson, onClose }: ILectionProps) {
+  const lectureUsers = useSelector<RootState, any>((state) => state.mainReducer.lectureUsers.users);
+
   const [isEditEnabled, setIsEditEnabled] = useState(false);
   const [users, setUsers] = useState<any>([]);
+
+  const dispatch = useDispatch();
 
   const onCheckedChange = (userId: number) => {
     setIsEditEnabled(true);
     setUsers(() => [...users.map((item: any) => {
       if (item.id === userId) {
-        item.checked = !item.checked;
+        return ({
+          ...item,
+          checked: !item.checked,
+        });
       }
       return item;
     })]);
   };
 
   useEffect(() => {
-    setUsers(usersConstant);
+    dispatch(requestUsers({ id: currentLesson.id }));
   }, []);
+
+  useEffect(() => {
+    if (lectureUsers) {
+      setUsers(lectureUsers);
+    }
+  }, [lectureUsers]);
+
+  const onEdit = () => {
+    dispatch(requestLectureEdit({ lectionId: currentLesson.id, lectureUsers: users }));
+  };
 
   return (
     <div className={classes.content}>
@@ -98,7 +85,7 @@ function Lection({ currentLesson, onClose }: ILectionProps) {
       </Table>
       <div className={classes.button}>
         <Button onClick={onClose} title="Назад" isPrimary={false} />
-        <Button title="Сохранить" disabled={!isEditEnabled} isPrimary />
+        <Button onClick={onEdit} title="Сохранить" disabled={!isEditEnabled} isPrimary />
       </div>
     </div>
   );

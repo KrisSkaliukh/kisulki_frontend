@@ -13,7 +13,6 @@ function Schedule() {
 
   const user = useSelector<RootState, any>((state) => state.mainReducer.user);
   const lessons = useSelector<RootState, any>((state) => state.mainReducer.lessons);
-  console.log(lessons);
   const isStudent = user.user.role === 'student';
 
   // console.log(i);
@@ -57,6 +56,7 @@ function Schedule() {
               .map((item: any) => (
                 <LessonCard
                   key={item.id}
+                  id={item.id}
                   title={item.title}
                   date={item.start}
                   registrationTime={item.registrationTime}

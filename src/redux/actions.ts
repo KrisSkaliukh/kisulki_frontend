@@ -24,6 +24,18 @@ export const GET_GROUPS_REQUESTED = 'GET_GROUPS_REQUESTED';
 export const GET_GROUPS_RECEIVED = 'GET_GROUPS_RECEIVED';
 export const GET_GROUPS_REJECTED = 'GET_GROUPS_REJECTED';
 
+export const USERS_REQUESTED = 'USERS_REQUESTED';
+export const USERS_RECEIVED = 'USERS_RECEIVED';
+export const USERS_REJECTED = 'USERS_REJECTED';
+
+export const LECTURE_EDIT_REQUESTED = 'LECTURE_EDIT_REQUESTED';
+export const LECTURE_EDIT_RECEIVED = 'LECTURE_EDIT_RECEIVED';
+export const LECTURE_EDIT_REJECTED = 'LECTURE_EDIT_REJECTED';
+
+export const EXCEL_REQUESTED = 'EXCEL_REQUESTED';
+export const EXCEL_RECEIVED = 'EXCEL_RECEIVED';
+export const EXCEL_REJECTED = 'EXCEL_REJECTED';
+
 export const requestSetUser = createAction(SET_USER_REQUESTED);
 export const receiveSetUser = createAction(SET_USER_RECEIVED);
 export const rejectSetUser = createAction(SET_USER_REJECTED);
@@ -39,3 +51,12 @@ export const rejectGroupSend = createAction(CODE_SENT_REJECTED);
 export const requestGetGroups = createAction(GET_GROUPS_REQUESTED);
 export const receiveGetGroups = createAction(GET_GROUPS_RECEIVED);
 export const rejectGetGroups = createAction(GET_GROUPS_REJECTED);
+export const requestUsers = createAction(USERS_REQUESTED);
+export const receiveUsers = createAction(USERS_RECEIVED);
+export const rejectUsers = createAction(USERS_REJECTED);
+export const requestLectureEdit = createAction(LECTURE_EDIT_REQUESTED);
+export const receiveLectureEdit = createAction(LECTURE_EDIT_RECEIVED);
+export const rejectLectureEdit = createAction(LECTURE_EDIT_REJECTED);
+export const requestExcel = createAction(EXCEL_REQUESTED);
+export const receiveExcel = createAction(EXCEL_RECEIVED);
+export const rejectExcel = createAction(EXCEL_REJECTED);
