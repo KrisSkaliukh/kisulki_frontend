@@ -3,6 +3,7 @@ import {
   GET_SCHEDULE_RECEIVED,
   GET_SCHEDULE_REJECTED,
   GET_SCHEDULE_REQUESTED,
+  SEND_REGITRATION_CODE_REJECTED,
   SET_USER_RECEIVED,
 } from '../actions';
 
@@ -42,6 +43,13 @@ function mainReducer(state = initialState, action: Action) {
       return {
         ...state,
         isLoading: false,
+      };
+    }
+    case SEND_REGITRATION_CODE_REJECTED: {
+      const { payload } = action as Action<any>;
+      return {
+        ...state,
+        error: payload.error,
       };
     }
     default:

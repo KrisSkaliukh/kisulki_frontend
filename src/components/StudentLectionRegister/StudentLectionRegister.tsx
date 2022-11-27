@@ -1,6 +1,8 @@
 import { TextField } from '@mui/material';
 import { memo } from 'react';
+import { useDispatch } from 'react-redux';
 
+import { requestCodeSend } from '../../redux/actions';
 import Button from '../Button';
 import CloseIcon from '../SVGIcons/CloseIcon';
 import classes from './student-lection-register.module.scss';
@@ -14,6 +16,11 @@ function StudentLectionRegister({
   title,
   onClose,
 }: ILessonCardProps) {
+  const dispatch = useDispatch();
+
+  const onCodeSend = () => {
+    dispatch(requestCodeSend());
+  };
   return (
     <div className={classes.content}>
       <div className={classes.header}>
@@ -40,7 +47,7 @@ function StudentLectionRegister({
         }}
       />
       <div className={classes.buttonContainer}>
-        <Button title="Зарегистрироваться" isPrimary />
+        <Button onClick={onCodeSend} title="Зарегистрироваться" isPrimary />
       </div>
     </div>
   );
