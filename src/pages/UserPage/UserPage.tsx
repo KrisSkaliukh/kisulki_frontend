@@ -18,7 +18,7 @@ function UserPage() {
     if (user && user.user.isFirstLogin && user.user.role === 'student') {
       return undefined;
     }
-    if (user && user.group.id && user.user.role === 'student') {
+    if (user && user.group && user.user.role === 'student') {
       dispatch(requestGetSchedule({ groupId: user.group.id, surname: null }));
     }
     if (user && user.user.role !== 'student') {
