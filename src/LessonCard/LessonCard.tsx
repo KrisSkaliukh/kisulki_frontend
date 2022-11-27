@@ -18,7 +18,7 @@ interface ILessonCardProps {
   date: Date;
   registrationTime: number;
   audience: string;
-  group: string;
+  group: string | string[];
   onActiveLessonClick: (lesson: any) => void;
   teacher: string;
   code: string;
@@ -74,7 +74,7 @@ function LessonCard({
     <>
       <div
         className={cn(classes.card, {
-          [classes.cardDisable]: checkRegistrationStatus() !== 'Регистрация продолжается',
+          [classes.cardDisable]: isStudent && checkRegistrationStatus() !== 'Регистрация продолжается',
         })}
         role="none"
         onClick={() => {
@@ -117,7 +117,7 @@ function LessonCard({
                 studentsNum={25}
                 checkedStudentsNum={20}
                 onClose={() => setIsModalOpen(false)}
-                group={group}
+                group={' '}
                 audience={audience}
               />
             )
@@ -127,7 +127,7 @@ function LessonCard({
                 title={title}
                 onClose={() => setIsModalOpen(false)}
                 registrationTime={registrationTime}
-                group={group}
+                group={' '}
                 audience={audience}
               />
             ))}
